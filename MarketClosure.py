@@ -135,15 +135,15 @@ draw3.text(xy=(275,1150), text = price_gold, fill = (30, 63, 116), font = montse
 draw3.text(xy=(275,1370), text = price_oil, fill = (30, 63, 116), font = montserrat_small)
 
 # Changes
-draw3.text(xy=(685,420), text = change_btc, fill = (30, 63, 116), font = montserrat_small)
-draw3.text(xy=(685,645), text = change_eth, fill = (30, 63, 116), font = montserrat_small) 
-draw3.text(xy=(685,1115), text = change_gold, fill = (30, 63, 116), font = montserrat_small)
-draw3.text(xy=(685,1325), text = change_oil, fill = (30, 63, 116), font = montserrat_small)
+draw3.text(xy=(730,420), text = change_btc, fill = (30, 63, 116), font = montserrat_small)
+draw3.text(xy=(730,645), text = change_eth, fill = (30, 63, 116), font = montserrat_small) 
+draw3.text(xy=(730,1115), text = change_gold, fill = (30, 63, 116), font = montserrat_small)
+draw3.text(xy=(730,1325), text = change_oil, fill = (30, 63, 116), font = montserrat_small)
 # Setas
-image3.paste(arrow_btc,(930,420), arrow_btc)
-image3.paste(arrow_eth,(930,635), arrow_eth)
-image3.paste(arrow_gold,(930,1115), arrow_gold)
-image3.paste(arrow_oil,(930,1325), arrow_oil)
+image3.paste(arrow_btc,(945,420), arrow_btc)
+image3.paste(arrow_eth,(945,635), arrow_eth)
+image3.paste(arrow_gold,(945,1115), arrow_gold)
+image3.paste(arrow_oil,(945,1325), arrow_oil)
 
 
 #################################################################################################
