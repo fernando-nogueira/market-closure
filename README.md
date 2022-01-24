@@ -3,4 +3,4 @@ A pillow based code that gets info about the main stocks in the world and return
 
 
 ### Dependencies and libraries
-PIL, requests, bs4, pandas, pandas_datareader
+Pillow, requests, bs4, pandas, pandas_datareader
