@@ -13,9 +13,9 @@ path = str(os.getcwd()).replace("\\","/")
 # Pegar o dia de hoje, checar se for segunda descontar 3 dias, se for outro dia descontar 1, criando a variável 'ontem'
 today = dt.datetime.today()
 if today.strftime('%A') == "Monday":
-   yesterday = dt.datetime(today.year, today.month, today.day-3)
+   yesterday = today - dt.timedelta(days=3)
 else:
-    yesterday = dt.datetime(today.year, today.month, today.day-1)
+    yesterday = today - dt.timedelta(days=1)
 date = [yesterday.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d')]
 
 # Lista de Ativos
