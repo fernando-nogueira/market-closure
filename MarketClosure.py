@@ -5,7 +5,6 @@ from PIL import Image, ImageDraw, ImageFont
 import pandas as pd
 import datetime as dt
 import pandas_datareader as pdr
-import PIL
 import time
 import os
 
@@ -16,7 +15,7 @@ if today.strftime('%A') == "Monday":
    yesterday = today - dt.timedelta(days=3)
 else:
     yesterday = today - dt.timedelta(days=1)
-date = [yesterday.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d')]
+
 
 # Lista de Ativos
     # Ibovespa, S&P500 e BRL-USD
@@ -30,8 +29,12 @@ assets = ['^BVSP', '^GSPC', 'BRL=X', 'BTC-USD', 'ETH-USD', 'CL=F', 'GC=F']
 # 'R$ valor (2 casas decimais) ' - Real
 # 'USD valor (2 casas decimais) '- Bitcoin/Ethereum/Ouro/Petróleo
 
-def assets_data(asset, date):
-    df = pdr.get_data_yahoo(asset, start=date[0], end=date[1])
+def assets_data(asset, date1, date2):
+    date = [date1, date2]
+    df = pdr.get_data_yahoo(asset, start=date[0].strftime('%Y-%m-%d'), end=date[1].strftime('%Y-%m-%d'))
+    if len(df) == 1:
+        date[0] = date[0] - dt.timedelta(days=1)
+        df = pdr.get_data_yahoo(asset, start= date[0].strftime('%Y-%m-%d'), end=date[1].strftime('%Y-%m-%d'))
     if asset[0] == '^':
         price = int(df['Close'].iloc[1])
     else:
@@ -52,27 +55,26 @@ def assets_data(asset, date):
         #str(price).replace(".", ",")
     return {'price':price,'returns':returns}
 
+price_ibov =  assets_data(assets[0],  yesterday, today)['price'] + ' pts'
+change_ibov = assets_data(assets[0],  yesterday, today)['returns'] + '%'
 
-price_ibov =  assets_data(assets[0], date)['price'] + ' pts'
-change_ibov = assets_data(assets[0], date)['returns'] + '%'
+price_sp =  assets_data(assets[1],  yesterday, today)['price'] + ' pts'
+change_sp = assets_data(assets[1],  yesterday, today)['returns'] + '%'
 
-price_sp =  assets_data(assets[1], date)['price'] + ' pts'
-change_sp = assets_data(assets[1], date)['returns'] + '%'
+price_dolar = 'R$ ' + assets_data(assets[2],  yesterday, today)['price']
+change_dolar = assets_data(assets[2],  yesterday, today)['returns'] + '%'
 
-price_dolar = 'R$ ' + assets_data(assets[2], date)['price']
-change_dolar = assets_data(assets[2], date)['returns'] + '%'
+price_btc = 'USD ' + assets_data(assets[3],  yesterday, today)['price']
+change_btc = assets_data(assets[3],  yesterday, today)['returns'] + '%'
 
-price_btc = 'USD ' + assets_data(assets[3], date)['price']
-change_btc = assets_data(assets[3], date)['returns'] + '%'
+price_eth = 'USD ' + assets_data(assets[4],  yesterday, today)['price']
+change_eth = assets_data(assets[4],  yesterday, today)['returns'] + '%'
 
-price_eth = 'USD ' + assets_data(assets[4], date)['price']
-change_eth = assets_data(assets[4], date)['returns'] + '%'
+price_oil = 'USD ' + assets_data(assets[5],  yesterday, today)['price']
+change_oil = assets_data(assets[5],  yesterday, today)['returns'] + '%'
 
-price_oil = 'USD ' + assets_data(assets[5], date)['price']
-change_oil = assets_data(assets[5], date)['returns'] + '%'
-
-price_gold = 'USD ' + assets_data(assets[6], date)['price']
-change_gold = assets_data(assets[6], date)['returns'] + '%'
+price_gold = 'USD ' + assets_data(assets[6],  yesterday, today)['price']
+change_gold = assets_data(assets[6],  yesterday, today)['returns'] + '%'
 
 # Fontes não funcionando
 montserrat_giant = ImageFont.truetype("Montserrat-Regular.otf", 70)
