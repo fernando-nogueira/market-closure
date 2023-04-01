@@ -1,6 +1,6 @@
-import src.stocks_data as stocks
-import src.index_data as index
-import src.image_maker as img
+import stocks_data as stocks
+import index_data as index
+import image_maker as img
 
 def main() -> None:
     data_stocks = stocks.format_stocks_data()
